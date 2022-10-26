@@ -2,7 +2,7 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { SessionContext,ThemeContext } from '../../imports'
 import Style from './css/sign.module.css'
-
+import { RegisterUser } from '../../service/AuthenticationService'
 export default function Index() {
     const {sessionUser,LogIn}=useContext(SessionContext)
     const {theme}=useContext(ThemeContext)
@@ -49,15 +49,15 @@ export default function Index() {
     const handleRegister=async (e) =>{
 		e.preventDefault();
 		setIsSigning(true)
-		// try{
-        //     const response=await RegisterUser(values)
-        //     if(response?.status===200){
-        //         handleLogin()
-        //     }
-        //     setError(response.data)
-		// }catch(er){
-		// 	setError(catchError(er))
-		// }
+		try{
+            const response=await RegisterUser(values)
+            if(response?.status===200){
+                handleLogin()
+            }
+            setError(response.data)
+		}catch(er){
+			setError('Something went wrong')
+		}
 		setIsSigning(false)
 	}
 

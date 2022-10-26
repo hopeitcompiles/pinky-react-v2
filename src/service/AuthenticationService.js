@@ -12,12 +12,21 @@ const LoginUser=async (credentials) => {
     )
     return response
 }
-
+const RegisterUser=async(credentials)=>{
+    const response = await axios.post(base_url+"public/register",credentials,
+        {
+            headers:
+            {'Content-Type':'application/json',
+            },
+            withCredentials:true}
+    )
+    return response
+}
 const GetSessionUser = async () => { 
     const response =await axios.get(`${base_url}private/whoami`).then(response=>response.data)
     return response
 }
 
 export{
-    GetSessionUser,LoginUser
+    GetSessionUser,LoginUser, RegisterUser
 }
