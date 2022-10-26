@@ -9,7 +9,8 @@ import {HomePage,
   ThemeProvider,
   Header, 
   UserList, 
-  GameList} from './imports';
+  GameList,
+  GamePage} from './imports';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
             <Route path={"/games"} element={
               <GameList/>
             }/>
+            <Route path="/games/:gameid" element={
+              <GamePage/>
+          }/> 
           </Routes>
         </ThemeProvider>
       </SessionProvider>
