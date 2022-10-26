@@ -1,0 +1,23 @@
+import axios  from "axios"
+import { getBaseURL } from "../utils/Urls"
+const base_url=getBaseURL()
+
+const LoginUser=async (credentials) => { 
+    const response = await axios.post(base_url+"login",credentials,
+        {
+            headers:
+            {'Content-Type':'application/json',
+            },
+            withCredentials:true}
+    )
+    return response
+}
+
+const GetSessionUser = async () => { 
+    const response =await axios.get(`${base_url}private/whoami`).then(response=>response.data)
+    return response
+}
+
+export{
+    GetSessionUser,LoginUser
+}
